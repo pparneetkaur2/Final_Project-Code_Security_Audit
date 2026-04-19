@@ -1,9 +1,8 @@
 //variables
 let storyIndex = 0; 
-const playerName = "Munchkin"; 
-let spookyMessage = "Welcome to the Haunted Adventure "; 
+let playerName = prompt("Enter your name:"); 
+let spookyMessage = "Welcome to the Haunted Adventure ";
 
-//string literal
 const welcomeLiteral = `Hello ${playerName}, you have entered the Haunted Forest...`;
 
 //arrays
@@ -15,12 +14,14 @@ let storyEvents = [
     "You run deeper into the woods, your heart pounding with fear..."
 ];
 
-//html manipulation
 const header = document.getElementById("headerText");
-header.textContent = welcomeLiteral;
-
 const footer = document.getElementById("statusMessage");
-footer.textContent = storyEvents[storyIndex];
+
+header.innerHTML = welcomeLiteral;
+
+console.log("User name entered:", playerName);
+
+footer.innerHTML = storyEvents[storyIndex];
 
 //functions
 function moveForward() {
@@ -35,9 +36,9 @@ function moveForward() {
 function stepBack() {
     if (storyIndex > 0) {
         storyIndex--;
-        footer.textContent = storyEvents[storyIndex];
+        footer.innerHTML = storyEvents[storyIndex];
     } else {
-        footer.textContent = "You are back at the beginning of the haunted forest...";
+        footer.innerHTML = "You are back at the beginning of the haunted forest...";
     }
 }
 
