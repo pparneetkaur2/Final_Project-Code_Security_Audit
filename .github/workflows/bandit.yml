@@ -1,4 +1,4 @@
-name: Bandit
+name: Bandit Security Scan
 
 on:
   push:
@@ -6,12 +6,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  analyze:
+  bandit:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Perform Bandit Analysis
-        uses: PyCQA/bandit-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit
+        run: bandit -r . -ll
